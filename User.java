@@ -2,40 +2,90 @@ import java.util.ArrayList;
 
 public class User {
     /**Stores strings for the name and type of the bug, and integers for the x_positon, y_position, size, and energy. Also stores an ArrayList for all the items that the bug is holding.  */
-    public ArrayList<String> items;
+    public static ArrayList<String> items = new ArrayList<String>();
+    public static ArrayList<Weapon> weapons = new ArrayList<Weapon>();
     static int x_position=0;
     static int y_position=0;
 
 
     /**Constructor */ 
     public User() {
-        this.items = new ArrayList<String>();
+        //items = new ArrayList<String>();
+        //weapons = new ArrayList<Weapon>(); 
     }
     
     /**Manipulator to grab an item by adding it to the items arraylist if the bug has enough energy and can hold another object. Reduces the bugs energy if it can grab the item. 
      * @param item item to be grabbed (item to be added to the items ArrayList)
      */
-    public void grab(String item) {
-        if (this.items.size() ==2) {
+    public static void grab(String response) {
+        if ((weapons.size() ==2) || (items.size() ==2) || ((weapons.size()==1) && (items.size()==1))) {
             throw new RuntimeException("You cannot hold more than two items");
         }
-        if (this.items.size() < 2){
-            items.add(item);
+        if (items.size() < 2) {
+            if ((x_position ==2 && y_position == 2) && (response.contains("Knife") || response.contains("knife"))){
+                try {
+                    Map.kitchen.weapons.remove(Map.knife);
+                    weapons.add(Map.knife);
+                }catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            else if ((x_position ==2 && y_position == -2) && (response.contains("Wrench") || response.contains("wrench"))){
+                try {
+                    Map.conservatory.weapons.remove(Map.wrench);
+                    weapons.add(Map.wrench);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            else if ((x_position ==0 && y_position == -2) && (response.contains("Rope") || response.contains("rope"))){
+                try {
+                    Map.hall.weapons.remove(Map.rope);
+                    weapons.add(Map.rope);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            else if ((x_position ==-2 && y_position == -2) && (response.contains("Pistol") || response.contains("pistol"))){
+                try {
+                    Map.study.weapons.remove(Map.pistol);
+                    weapons.add(Map.pistol);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            else if ((x_position ==0 && y_position == 2) && (response.contains("Pipe") || response.contains("pipe"))){
+                try {
+                    Map.lounge.weapons.remove(Map.lead_pipe);
+                    weapons.add(Map.lead_pipe);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            else if ((x_position ==-2 && y_position == 2) && (response.contains("Candlestick") || response.contains("candlestick"))){
+                try {
+                    Map.library.weapons.remove(Map.candlestick);
+                    weapons.add(Map.candlestick);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
+    
     }
 
     /**Manipulator to drop an item by removing it from the items arraylist if the bug is holding the item. 
      * @param item item to be dropped (item to be removed from the items Arraylist)
      */
     public String drop(String item) {
-        if (this.items.size() ==0) {
+        if (items.size() ==0) {
             throw new RuntimeException("You arent holding any items");
         }
-        if (!this.items.contains(item)) {
+        if (!items.contains(item)) {
             throw new RuntimeException("You aren't holding " + item);
         }
         else {
-            this.items.remove(item);
+            items.remove(item);
             return item;
         }
     }
@@ -43,15 +93,37 @@ public class User {
     /**Function that examines an item if the bug has enough energy. Reduces the bugs energy if it can examine the item. 
      * @param item item to be examined
      */
-    public void examine(String item) {
-        grab(item);
-        //Get clue
-        drop(item);
+    public static void examine(String response) {
+        if (response.contains("Pistol") || response.contains("pistol")) {
+            if (x_position ==-2 && y_position == -2) {
+                System.out.println("The pistol is stored neatly in a box and appears to have no fingerprints. ");
+            } 
+            else {
+                System.out.println("There is nothing to examine. ");
+            }
+        }
+        else if (response.contains("Book") || response.contains("book")) {
+            if (x_position ==0 && y_position == 2) {
+                System.out.println("You flip through the pages in the book and inside you see a book plate indicating that the book belongs to Ms. White. ");
+            }
+        }
+        else if (response.contains("Napkin") || response.contains("napkin")) {
+            if (x_position ==0 && y_position == 2) {
+                System.out.println("You uncrumple the napkin and see a small blood stain.");
+            }
+        }
+        else {
+            throw new RuntimeException("What do you want to examine?");
+        }
     }
     
-    public void inventory() {
+    public static void inventory() {
         System.out.println("Current inventory:");
-        System.out.println(this.items.toString()
+        System.out.println(items.toString()
+                            .replace("[","")
+                            .replace("]","")
+                            .replace(", ", "\n"));
+        System.out.println(weapons.toString()
                             .replace("[","")
                             .replace("]","")
                             .replace(", ", "\n"));
@@ -273,18 +345,44 @@ public class User {
 
     public static void read() {
         if (x_position ==2 && y_position == -2) {
-            //read Peacocks journal
+            //read Peacocks journal in the conservatory
+        }
+        else if (x_position ==0 && y_position == 2) {
+            //read White's book in the lounge
         }
         else {
             System.out.println("There is nothing to read in this room.");
         }
     }
 
+    public static void open(String response) {
+        if (response.contains("Envelope") || response.contains("envelope")) {
+
+        }
+        else if (response.contains("Drawer") || response.contains("drawer")) {
+            if (x_position ==-2 && y_position == -2) {
+                System.out.println("You open the drawer and inside you see a pistol.");
+            } 
+            else {
+                System.out.println("There is no drawer to open in this room. ");
+            }
+        }
+        else if (x_position ==0 && y_position == 2) {
+            if (response.contains("Closet") || response.contains("closet") || response.contains("Door") || response.contains("door")) {
+                System.out.println("Inside the closet you find a lead pipe on the floor.");
+            }
+            else {
+                System.out.println("There is no closet to open in this room.");
+            }
+        }
+        else {
+            throw new RuntimeException("What do you want to open?");
+        }
+    }
+
     public static void main(String[] args) {
-        User myHouse = new User();
-        myHouse.grab("pen");
-        myHouse.grab("pencil");
-        myHouse.inventory();
+       
+        
         //regj
     }
 

@@ -25,7 +25,7 @@ public class House extends Building{
    * @param person person to be determined if they are a resident of the house
    * @return boolean describing if person is a resident (true = resident, false = not a resident)
    */
-  public boolean isRoom(String room) {
+  public boolean isRoom(Room room) {
     if (this.rooms.size() == 0){
       throw new RuntimeException("Sorry, there are no rooms in this house");
     }

@@ -7,6 +7,7 @@ public class Room {
     public int y_position;
     public ArrayList<String> residents;
     public ArrayList<String> items;
+    public ArrayList<Weapon> weapons;
     
     public Room(String name, int x_position, int y_positon) {
         this.name = name;
@@ -14,6 +15,25 @@ public class Room {
         this.y_position = y_positon;
         //this.residents = new ArrayList<String>();
         this.items = new ArrayList<String>();
+        this.weapons = new ArrayList<Weapon>();
+    }
+
+    public void addWeapon(Weapon weapon) {
+        if (this.weapons.contains(weapon)) {
+            throw new RuntimeException(weapon.name + " is already in the " + this.name);
+        }
+        else {
+            this.weapons.add(weapon);
+        }
+    }
+    public void removeWeapon(Weapon weapon) {
+        if (this.weapons.size() == 0) {
+            throw new RuntimeException("There are no weapons in " + this.name);
+        }
+        if (!this.weapons.contains(weapon)) {
+            throw new RuntimeException(weapon.name + " is not in the " + this.name);
+        }
+        this.weapons.remove(weapon);
     }
     /**
      * Adds a passenger to a car and throws a RunTimeException if the passenger is on the car already or if the car is at maximum capacity.
@@ -43,6 +63,7 @@ public class Room {
         if (x_position ==0 && y_position == 2) {
             //lounge.enterRoom();
             System.out.println("You are now in the lounge.");
+            System.out.println("Inside to your right is a counch with a sidetable and a lamp. On the table is a book whose title you don't recognize. In the left most corner there is a door that leads to a closet. ");
         }
         if (x_position ==2 && y_position == 2) {
             //kitchen.enterRoom();
@@ -52,6 +73,7 @@ public class Room {
         if (x_position ==-2 && y_position == -2) {
             //study.enterRoom();
             System.out.println("You are now in the study.");
+            System.out.println("Inside there is a large desk and you walk over to it. On one corner you see some hardened candle wax and then notice that one of the desks drawers is slightly open. ");
         }
         if (x_position ==0 && y_position == -2) {
             //hall.enterRoom();
