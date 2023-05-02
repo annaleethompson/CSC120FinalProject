@@ -47,7 +47,7 @@ public class Room {
         if (x_position ==2 && y_position == 2) {
             //kitchen.enterRoom();
             System.out.println("You are now in the kitchen.");
-            System.out.println("Colonel Mustard is on the far right corner plating a dish that he just made called Vadacurry. He is chopping up some thyme to use as a garnish before he notices you enter. ");
+            System.out.println("Colonel Mustard is on the far right corner plating a dish that he just made called ____. He is chopping up some thyme to use as a garnish with a sharp knife before he notices you enter. ");
         }
         if (x_position ==-2 && y_position == -2) {
             //study.enterRoom();
@@ -56,13 +56,16 @@ public class Room {
         if (x_position ==0 && y_position == -2) {
             //hall.enterRoom();
             System.out.println("You are now in the hall.");
+            System.out.println("Green is sitting at a table doing some work straight ahead of you. To your left there is a stack of rope. ");
         }
         if (x_position ==2 && y_position == -2) {
             //conservatory.enterRoom();
             System.out.println("You are now in the conservatory.");
+            System.out.println("Peacock is sitting in the right most corner largely hidden by a big plant. They are writing in a journal and smile at you when you enter. To your left there is a wrench near a hose and exposed pipes. ");
         }
     }
 
+    
     /**
      * Removes a passenger from a car and throws a RunTimeException if the passenger isn't in the car or if there are no passengers on the car.
      * @param p the passenger to be removed

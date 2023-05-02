@@ -74,6 +74,13 @@ public class Conversation {
                       System.out.println(e.getMessage());
                 }
             }
+            else if (response.contains("Read") || response.contains("read")) {
+                try {
+                      User.read();
+                }catch (Exception e) {
+                      System.out.println(e.getMessage());
+                }
+            }
             else {
                 System.out.println("I don't know what this means.");
             }
