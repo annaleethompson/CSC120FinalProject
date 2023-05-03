@@ -13,12 +13,12 @@ public class Map {
     public static Room library = new Room("Library", -2, 2);
     public static Room lounge = new Room("Lounge", 0, 2);
     public static Room study = new Room("Study", -2, -2);
-    public static Weapon knife = new Weapon("Knife");
-    public static Weapon wrench = new Weapon("Wrench");
-    public static Weapon rope = new Weapon("Rope");
-    public static Weapon pistol = new Weapon("Pistol");
-    public static Weapon lead_pipe = new Weapon("Lead Pipe");
-    public static Weapon candlestick = new Weapon("Candlestick");
+    public static Weapon knife = new Weapon("Knife", 2, 2);
+    public static Weapon wrench = new Weapon("Wrench", 2, -2);
+    public static Weapon rope = new Weapon("Rope", 0, -2);
+    public static Weapon pistol = new Weapon("Pistol", -2, -2);
+    public static Weapon lead_pipe = new Weapon("Lead Pipe", 0, 2);
+    public static Weapon candlestick = new Weapon("Candlestick", -2, 2);
 
     public Map() {
         this.house = new House("Clue", "1 Mystery Lane");
@@ -109,6 +109,7 @@ public class Map {
         }
         if (x_position ==1 && y_position ==-2) {
             System.out.println("This is a deadend. North of you is the hallway you came from.");
+            System.out.println("To you right, close to the northern hallway you spot a hankerchief on the ground. ");
         }
         if (x_position ==-2 && y_position==1) {
             System.out.println("To your north there is a doorway and to your east is the hallway you came from.");
@@ -128,6 +129,7 @@ public class Map {
         }
         if (x_position ==2 && y_position==-1) {
             System.out.println("To your south there is a doorway and to your west is the hallway you came from.");
+            System.out.println("You spot a bookmark on the floor in a dark corner besides a window.");
         }
     } 
 }

@@ -19,6 +19,13 @@ public class Conversation {
                     System.out.println(e.getMessage());
                 }
             }
+            else if (response.contains("Drop") || response.contains("drop") || response.contains("Leave") || response.contains("leave")) {
+                try {
+                    User.drop(response);
+                }catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
             else if (response.contains("Open") || response.contains("open")) {
                 try {
                     User.open(response);
