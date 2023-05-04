@@ -87,7 +87,7 @@ public class Map {
             System.out.println("The hallway continues in all directions from here. ");
         }
         if (x_position ==-1 && y_position ==0) {
-            System.out.println("North and south of you the hallway continues. To your west and east there are doors");
+            System.out.println("North and south of you the hallway continues. To your west and east there are rooms");
         }
         if (x_position ==-1 && y_position ==-1) {
             System.out.println("The hallway continues in all directions from here.");
@@ -102,7 +102,7 @@ public class Map {
             System.out.println("The hallway continues in all directions from here.");
         }
         if (x_position ==1 && y_position ==0) {
-            System.out.println("North and south of you the hallway continues. To your west and east there are doors");
+            System.out.println("North and south of you the hallway continues. To your west and east there are rooms");
         }
         if (x_position ==1 && y_position ==-1) {
             System.out.println("The hallway continues in all directions from here.");
@@ -112,23 +112,23 @@ public class Map {
             System.out.println("To you right, close to the northern hallway you spot a hankerchief on the ground. ");
         }
         if (x_position ==-2 && y_position==1) {
-            System.out.println("To your north there is a doorway and to your east is the hallway you came from.");
+            System.out.println("To your north there is a room and to your east is the hallway you came from.");
         }
         if (x_position ==0 && y_position==1) {
-            System.out.println("West and east of you the hallway continues. To your north and south there are doors");
+            System.out.println("West and east of you the hallway continues. To your north and south there are rooms");
         }
         if (x_position ==2 && y_position==1) {
-            System.out.println("To your north there is a doorway and to your west is the hallway you came from.");
+            System.out.println("To your north there is a room and to your west is the hallway you came from.");
         }
         if (x_position ==-2 && y_position==-1) {
-            System.out.println("To your south there is a doorway and to your east is the hallway you came from.");
+            System.out.println("To your south there is a room and to your east is the hallway you came from.");
             System.out.println("On the ground you spot a red piece of hair");
         }
         if (x_position ==0 && y_position==-1) {
-            System.out.println("West and east of you the hallway continues. To your north and south there are doors");
+            System.out.println("West and east of you the hallway continues. To your north and south there are rooms");
         }
         if (x_position ==2 && y_position==-1) {
-            System.out.println("To your south there is a doorway and to your west is the hallway you came from.");
+            System.out.println("To your south there is a room and to your west is the hallway you came from.");
             System.out.println("You spot a bookmark on the floor in a dark corner besides a window.");
         }
     } 

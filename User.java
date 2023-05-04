@@ -103,43 +103,53 @@ public class User {
                 }
             }
             else if ((response.contains("Wrench") || response.contains("wrench"))){
-                if ((Map.wrench.x_pos==x_position) && (Map.wrench.y_pos==y_position)) {
-                    weapons.add(Map.wrench);
+                if (User.weapons.contains(Map.wrench)) {
+                    Map.wrench.changeCoordinates(x_position, y_position);
+                    weapons.remove(Map.wrench);
+                    System.out.println("You dropped the wrench");
                 }
                 else {
-                    throw new RuntimeException("The wrench isn't in this room.");
+                    throw new RuntimeException("You aren't holding the wrench.");
                 }
             }
             else if ((response.contains("Rope") || response.contains("rope"))){
-                if ((Map.rope.x_pos==x_position) && (Map.rope.y_pos==y_position)) {
-                    weapons.add(Map.rope);
+                if (User.weapons.contains(Map.rope)) {
+                    Map.rope.changeCoordinates(x_position, y_position);
+                    weapons.remove(Map.rope);
+                    System.out.println("You dropped the rope");
                 }
                 else {
-                    throw new RuntimeException("The rope isn't in this room.");
+                    throw new RuntimeException("You aren't holding the rope.");
                 }
             }
             else if ((response.contains("Pistol") || response.contains("pistol"))){
-                if ((Map.pistol.x_pos==x_position) && (Map.pistol.y_pos==y_position)) {
-                    weapons.add(Map.pistol);
-                } 
+                if (User.weapons.contains(Map.pistol)) {
+                    Map.pistol.changeCoordinates(x_position, y_position);
+                    weapons.remove(Map.pistol);
+                    System.out.println("You dropped the pistol");
+                }
                 else {
-                    throw new RuntimeException("The pistol isn't in this room.");
+                    throw new RuntimeException("You aren't holding the pistol.");
                 }
             }
             else if ((response.contains("Pipe") || response.contains("pipe"))){
-                if ((Map.lead_pipe.x_pos==x_position) && (Map.lead_pipe.y_pos==y_position)) {
-                    weapons.add(Map.lead_pipe);
-                } 
+                if (User.weapons.contains(Map.lead_pipe)) {
+                    Map.lead_pipe.changeCoordinates(x_position, y_position);
+                    weapons.remove(Map.lead_pipe);
+                    System.out.println("You dropped the lead pipe");
+                }
                 else {
-                    throw new RuntimeException("The lead pipe isn't in this room.");
+                    throw new RuntimeException("You aren't holding the lead pipe.");
                 }
             }
             else if ((response.contains("Candlestick") || response.contains("candlestick"))){
-                if ((Map.candlestick.x_pos==x_position) && (Map.candlestick.y_pos==y_position)) {
-                    weapons.add(Map.candlestick);
+                if (User.weapons.contains(Map.candlestick)) {
+                    Map.candlestick.changeCoordinates(x_position, y_position);
+                    weapons.remove(Map.candlestick);
+                    System.out.println("You dropped the candlestick");
                 }
                 else {
-                    throw new RuntimeException("The candlestick isn't in this room.");
+                    throw new RuntimeException("You aren't holding the candlestick.");
                 }
             }
         }
@@ -293,7 +303,7 @@ public class User {
         }
         else if (response.contains("Mustard") || response.contains("mustard")) {
             if (x_position ==2 && y_position == 2) {
-                System.out.println("\nYou interupt Mustard from his cooking and inquire if he has noticed anything odd lateley. He says that earlier he went to the conservatory to get some thyme for his dish and saw Scarlet in the eastern hallway swiftly heading north with a candlestick. At the conservatory, he claims to have talked with Peacock for a little and then fixed a broken pipe used to water the plants with a wrench there. After getting the thyme he says he came back to the kitchen and has been cooking since then.\n");
+                System.out.println("\nYou interupt Mustard from his cooking and inquire if he has noticed anything odd lateley. He says that earlier he went to the conservatory to get some thyme for his dish and saw Scarlet in the eastern hallway swiftly heading north with a lit candlestick. At the conservatory, he claims to have talked with Peacock for a little and then fixed a broken hose used to water the plants with a wrench there. After getting the thyme he says he came back to the kitchen and has been cooking since then.\n");
             } else {
                 System.out.println("Colonel Mustard isn't in this room");
             }
@@ -440,7 +450,12 @@ public class User {
         }
         else if (response.contains("Drawer") || response.contains("drawer")) {
             if (x_position ==-2 && y_position == -2) {
-                System.out.println("You open the drawer and inside you see a pistol.");
+                if (Map.pistol.x_pos==-2 && Map.pistol.y_pos==-2) {
+                    System.out.println("You open the drawer and inside you see a pistol.");
+                }
+                else {
+                    System.out.println("There is nothing in this drawer");
+                }
             } 
             else {
                 System.out.println("There is no drawer to open in this room. ");
@@ -448,7 +463,12 @@ public class User {
         }
         else if (response.contains("Closet") || response.contains("closet"))  {
             if (x_position ==0 && y_position == 2) {
-                System.out.println("Inside the closet you find a lead pipe on the floor.");
+                if (Map.lead_pipe.x_pos==0 && Map.lead_pipe.y_pos==2) {
+                    System.out.println("Inside the closet you find a lead pipe on the floor.");
+                }
+                else {
+                    System.out.println("There is nothing in this closet.");
+                }
             }
             else {
                 System.out.println("There is no closet to open in this room.");

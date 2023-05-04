@@ -49,6 +49,9 @@ public class Room {
         if (x_position == 0 && y_position == 0) {
             //clue.enterRoom();
             System.out.println("You are now in the clue room.");
+            System.out.println("There is a table with an envelope.");
+            System.out.println("Do you want to accuse?");
+            
         }
         if (x_position == 2 && y_position == 0) {
             //dining.enterRoom();
@@ -58,17 +61,24 @@ public class Room {
         if (x_position ==-2 && y_position == 2) {
             //library.enterRoom(); 
             System.out.println("You are now in the library.");
-            System.out.println("Sitting on a couch to your left is Scarlet who is reading Turn of the Screw by Henry James. The room is lit by a fire going in the fireplace and a candlestick on a sidetable near Scarlet.");
+            System.out.print("Sitting on a couch to your left is Scarlet who is reading Turn of the Screw by Henry James. The room is lit by a fire going in the fireplace");
+            if (Map.candlestick.x_pos==-2 && Map.candlestick.y_pos==2) {
+                System.out.println(" and a candlestick on a sidetable near Scarlet.");
+            }
         }
         if (x_position ==0 && y_position == 2) {
             //lounge.enterRoom();
             System.out.println("You are now in the lounge.");
-            System.out.println("Inside to your right is a counch with a sidetable and a lamp. On the table is a book whose title you don't recognize. In the left most corner there is a door that leads to a closet. ");
+            System.out.println("Inside to your right is a couch with a sidetable and a lamp. On the table is a book whose title you don't recognize. In the left most corner there is a door that leads to a closet. ");
         }
         if (x_position ==2 && y_position == 2) {
             //kitchen.enterRoom();
             System.out.println("You are now in the kitchen.");
-            System.out.println("Colonel Mustard is on the far right corner plating a dish that he just made called ____. He is chopping up some thyme to use as a garnish with a sharp knife before he notices you enter. ");
+            System.out.print("Colonel Mustard is on the far right corner plating a dish that he just made.");
+            if (Map.knife.x_pos==2 && Map.knife.y_pos==2) {
+                System.out.println(" He is chopping up some thyme to use as a garnish with a sharp knife before he notices you enter.");
+            }
+
         }
         if (x_position ==-2 && y_position == -2) {
             //study.enterRoom();
@@ -78,12 +88,18 @@ public class Room {
         if (x_position ==0 && y_position == -2) {
             //hall.enterRoom();
             System.out.println("You are now in the hall.");
-            System.out.println("Green is sitting at a table doing some work straight ahead of you. To your left there is a stack of rope. ");
+            System.out.print("Green is sitting at a table doing some work straight ahead of you. ");
+            if (Map.rope.x_pos==0 && Map.rope.y_pos==-2) {
+                System.out.println("To your left there is a stack of rope.");
+            }
         }
         if (x_position ==2 && y_position == -2) {
             //conservatory.enterRoom();
             System.out.println("You are now in the conservatory.");
-            System.out.println("Peacock is sitting in the right most corner largely hidden by a big plant. They are writing in a journal and smile at you when you enter. To your left there is a wrench near a hose and exposed pipes. ");
+            System.out.print("Peacock is sitting in the right most corner largely hidden by a big plant. They are writing in a journal and smile at you when you enter.");
+            if (Map.rope.x_pos==2 && Map.rope.y_pos==-2) {
+                System.out.println(" To your left there is a wrench near a hose. ");
+            }
         }
     }
 
