@@ -26,9 +26,6 @@ public class User {
                 if ((Map.knife.x_pos==x_position) && (Map.knife.y_pos==y_position)) {
                     weapons.add(Map.knife);
                     System.out.println("You grabbed the knife.");
-                    for (int i = 0; i < User.weapons.size();i++) { 		      
-	                    System.out.println(User.weapons.get(i).name); 	;
-                    }
                 }
                 else {
                     throw new RuntimeException("The knife isn't in this room.");
@@ -169,28 +166,60 @@ public class User {
                 System.out.println("The pistol is stored neatly in a box and appears to have no fingerprints. ");
             } 
             else {
-                System.out.println("There is nothing to examine. ");
+                System.out.println("There is no pistol to examine here. ");
             }
         }
-        else if (response.contains("Book") || response.contains("book")) {
+        else if (response.contains("Book ") || response.contains("book ")) {
             if (x_position ==0 && y_position == 2) {
                 System.out.println("You flip through the pages in the book and inside you see a book plate indicating that the book belongs to Ms. White. ");
+            }
+            else {
+                System.out.println("There is no book to examine here. ");
             }
         }
         else if (response.contains("Napkin") || response.contains("napkin")) {
             if (x_position ==-1 && y_position == 2) {
                 System.out.println("You uncrumple the napkin and see a small blood stain.");
             }
+            else {
+                System.out.println("There is no napkin to examine here. ");
+            }
         }
         else if (response.contains("Bookmark") || response.contains("bookmark")) {
             if (x_position ==2 && y_position ==-1) {
                 System.out.println("The bookmark is purple and has a floral design.");
             }
+            System.out.println("There is no bookmark to examine here. ");
         }
         else if (response.contains("Hankerchief") || response.contains("hankerchief")) {
             if (x_position ==1 && y_position ==-2) {
                 System.out.println("The hankerchief is dark green.");
             }
+            System.out.println("There is no hankerchief to examine here. ");
+        }
+        else if (response.contains("Knife") || response.contains("knife")) {
+            if (x_position ==2 && y_position ==2) {
+                System.out.println("The knife has traces of thyme on it.");
+            }
+            System.out.println("There is no knife to examine here. ");
+        }
+        else if (response.contains("Wrench") || response.contains("wrench")) {
+            if (x_position ==2 && y_position ==-2) {
+                System.out.println("The wrench has grease marks and is slightly wet.");
+            }
+            System.out.println("There is no wrench to examine here. ");
+        }
+        else if (response.contains("Pipe") || response.contains("pipe ")) {
+            if (x_position ==0 && y_position ==2) {
+                System.out.println("The lead pipe has some fingerprints but looks relatively polished.");
+            }
+            System.out.println("There is no lead pipe to examine here. ");
+        }
+        else if (response.contains("Candlestick") || response.contains("candlestick")) {
+            if (x_position ==1 && y_position ==-2) {
+                System.out.println("The candlestick has a lot of fingerprints on it.");
+            }
+            System.out.println("There is no candlestick to examine here. ");
         }
         else {
             throw new RuntimeException("What do you want to examine?");
@@ -474,9 +503,18 @@ public class User {
                 System.out.println("There is no closet to open in this room.");
             }
         }
+        else if (response.contains("Book ") || response.contains("book ")) {
+            if (x_position ==0 && y_position == 2) {
+                System.out.println("You flip through the pages in the book and inside you see a book plate indicating that the book belongs to Ms. White. ");
+            }
+            else {
+                System.out.println("There is no book to examine here. ");
+            }
+        }
         else {
             throw new RuntimeException("What do you want to open?");
         }
+        
     }
 
     public static void main(String[] args) {

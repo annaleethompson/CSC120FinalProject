@@ -59,7 +59,32 @@ public class Conversation {
     public static void main(String[] arguments) {
         //User user = new User();
         System.out.println("Clue: A Murder Mystery");
-        System.out.println("You find yourself in a room at the center of a house. There is a table with an envelope.");
+        
+        
+        System.out.println("████████████████████████████████████████████████████████████████████");
+        System.out.println("█░░░░░░░░░░░░░░█░░░░░░█████████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████████");
+        System.out.println("█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████████");
+        System.out.println("█░░▄▀░░░░░░░░░░█░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░█░░░░░░█");
+        System.out.println("█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████░░▄▀░░█");
+        System.out.println("█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░█░░░░░░█");
+        System.out.println("█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████████");
+        System.out.println("█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░█░░░░░░█");
+        System.out.println("█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████░░▄▀░░█");
+        System.out.println("█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░█░░░░░░█");
+        System.out.println("█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████████");
+        System.out.println("█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░████████");
+        System.out.println("███████████████████████████████████████████████████████████████████████████████████████████████");
+        
+        System.out.println("█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█");
+        System.out.println("█░█▀▀█░░░▒█▀▄▀█░▒█░▒█░▒█▀▀█░▒█▀▀▄░▒█▀▀▀░▒█▀▀█░░░▒█▀▄▀█░▒█░░▒█░▒█▀▀▀█░▀▀█▀▀░▒█▀▀▀░▒█▀▀█░▒█░░▒█░█ ");
+        System.out.println("█▒█▄▄█░░░▒█▒█▒█░▒█░▒█░▒█▄▄▀░▒█░▒█░▒█▀▀▀░▒█▄▄▀░░░▒█▒█▒█░▒█▄▄▄█░░▀▀▀▄▄░░▒█░░░▒█▀▀▀░▒█▄▄▀░▒█▄▄▄█░█ ");
+        System.out.println("█▒█░▒█░░░▒█░░▒█░░▀▄▄▀░▒█░▒█░▒█▄▄▀░▒█▄▄▄░▒█░▒█░░░▒█░░▒█░░░▒█░░░▒█▄▄▄█░░▒█░░░▒█▄▄▄░▒█░▒█░░░▒█░░░█");
+        System.out.println("█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█");
+        System.out.println("███████████████████████████████████████████████████████████████████████████████████████████████");
+    
+
+
+        System.out.println("\nYou find yourself in a room at the center of a house. There is a table with an envelope.");
         Scanner scanner = new Scanner(System.in);
         while (won = true) {
             response = scanner.nextLine();
@@ -84,28 +109,28 @@ public class Conversation {
                     System.out.println(e.getMessage());
                 }
             }
-            else if (response.contains("West") || response.contains("west")) {
+            else if (response.contains("West") || response.contains("west") || response.contains("Left") || response.contains("left")) {
                 try {
                     User.goWest();
                 }catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
-            else if (response.contains("East") || response.contains("east")) {
+            else if (response.contains("East") || response.contains("east") || response.contains("Right") || response.contains("right")) {
                 try {
                     User.goEast();
                 }catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
-            else if (response.contains("North") || response.contains("north")) {
+            else if (response.contains("North") || response.contains("north")|| response.contains("Up") || response.contains("up")) {
                 try {
                     User.goNorth();
                 }catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
-            else if (response.contains("South") || response.contains("south")) {
+            else if (response.contains("South") || response.contains("south") || response.contains("Down") || response.contains("down")) {
                 try {
                     User.goSouth();
                 }catch (Exception e) {
@@ -119,7 +144,7 @@ public class Conversation {
                     System.out.println(e.getMessage());
                 }
             }
-            else if (response.contains("Talk") || response.contains("talk")|| response.contains("Hi") || response.contains("hi")) {
+            else if (response.contains("Talk") || response.contains("talk")|| response.contains("Say hi") || response.contains("Say hi")) {
               try {
                     User.talk(response);
                 }catch (Exception e) {
@@ -148,6 +173,7 @@ public class Conversation {
                 }
             }
             else if (response.contains("Examine") || response.contains("examine") || response.contains("Look") || response.contains("look") || response.contains("Uncrumple") || response.contains("uncrumple")) {
+    
                 try {
                       User.examine(response);
                 }catch (Exception e) {

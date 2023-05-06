@@ -97,7 +97,7 @@ public class Room {
             //conservatory.enterRoom();
             System.out.println("You are now in the conservatory.");
             System.out.print("Peacock is sitting in the right most corner largely hidden by a big plant. They are writing in a journal and smile at you when you enter.");
-            if (Map.rope.x_pos==2 && Map.rope.y_pos==-2) {
+            if (Map.wrench.x_pos==2 && Map.wrench.y_pos==-2) {
                 System.out.println(" To your left there is a wrench near a hose. ");
             }
         }
