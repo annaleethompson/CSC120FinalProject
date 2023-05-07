@@ -13,12 +13,12 @@ public class Map {
     public static Room library = new Room("Library", -2, 2);
     public static Room lounge = new Room("Lounge", 0, 2);
     public static Room study = new Room("Study", -2, -2);
-    public static Weapon knife = new Weapon("Knife", 2, 2);
-    public static Weapon wrench = new Weapon("Wrench", 2, -2);
-    public static Weapon rope = new Weapon("Rope", 0, -2);
-    public static Weapon pistol = new Weapon("Pistol", -2, -2);
-    public static Weapon lead_pipe = new Weapon("Lead Pipe", 0, 2);
-    public static Weapon candlestick = new Weapon("Candlestick", -2, 2);
+    public static Weapon knife = new Weapon("knife", 2, 2);
+    public static Weapon wrench = new Weapon("wrench", 2, -2);
+    public static Weapon rope = new Weapon("rope", 0, -2);
+    public static Weapon pistol = new Weapon("pistol", -2, -2);
+    public static Weapon lead_pipe = new Weapon("lead Pipe", 0, 2);
+    public static Weapon candlestick = new Weapon("candlestick", -2, 2);
 
     public Map() {
         this.house = new House("Clue", "1 Mystery Lane");

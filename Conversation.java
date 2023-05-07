@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Conversation {
     
@@ -8,11 +9,22 @@ public class Conversation {
     private static boolean ac_murderer = false;
     private static boolean ac_murder_weapon = false;
     private static boolean ac_murder_room = false;
+    static long startTime;
+    static long elapsedTime;
+    private static int numAccuse=0;
     //private String murderer = "Green";
     //private Weapon murder_weapon = Map.lead_pipe;
     //private Room murder_room = Map.library;
 
-    public static void accuse(String accusation) {
+    // public static void getTime() {
+    //     if (elapsedTime==0) {
+    //         throw new RuntimeException("There is currently no ongoing timer. ");
+    //     }
+    //     else {
+    //         System.out.println("Time remaining: " +(20-(TimeUnit.MILLISECONDS.toMinutes(elapsedTime))) + " minutes");
+    //     }
+    // }
+    public static boolean accuse(String accusation) {
         if (accusation.contains("green")) {
             if (accusation.contains("peacock") || accusation.contains("white") || accusation.contains("plum") || accusation.contains("mustard") || accusation.contains("scarlet")) {
                 throw new RuntimeException("You cannot accuse more than one person");
@@ -37,23 +49,187 @@ public class Conversation {
                 ac_murder_room = true;
             }
         }
-        win();
+        return win();
     }
 
-    public static void win() {
+    public static boolean win() {
         if (ac_murder_room==true && ac_murder_weapon==true && ac_murderer==true) {
             System.out.println("Conratulations you solved the crime!");
+            won=false;
+            //return false;
         }
-        else if ((ac_murder_room==true && ac_murder_weapon==true) || (ac_murder_weapon==true && ac_murderer==true) || (ac_murder_room==true && ac_murderer==true)) {
-            System.out.println("You have two aspects of the crime correct and one incorrect.");
-        }
-        else if (ac_murder_room==true || ac_murder_weapon==true || ac_murderer==true) {
-            System.out.println("You have one aspect of the crime correct and two incorrect");
-        }
-        else {
+        if (ac_murder_room==false && ac_murderer==false && ac_murder_weapon==false) {
             System.out.println("You have all aspects of the crime incorrect :(");
+            System.out.println("You may continue searching the rooms for clues.");
+            //return true;
         }
+        //if (((ac_murder_room==true && ac_murder_weapon==true) || (ac_murder_weapon==true && ac_murderer==true) || (ac_murder_room==true && ac_murderer==true)) || (ac_murder_room==true || ac_murder_weapon==true || ac_murderer==true)) {
+        else {
+            if ((ac_murder_room==true && ac_murder_weapon==true) || (ac_murder_weapon==true && ac_murderer==true) || (ac_murder_room==true && ac_murderer==true)) {
+                System.out.println("You have two aspects of the crime correct and one incorrect.");
+            }
+            else if (ac_murder_room==true || ac_murder_weapon==true || ac_murderer==true) {
+                System.out.println("You have one aspect of the crime correct and two incorrect");
+            }
+            //if (numAccuse>0) {
+                //return false;
+            //}
+            if (numAccuse==0) {
+                numAccuse+=1;
+                long startTime = System.currentTimeMillis();
+                System.out.println("The murder has found out that you have some of the crime figured out. You only have twenty minutes to solve the crime before the killer gets you next. ");
+                Scanner scanner = new Scanner(System.in);
+                while (won=true) {
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    if (elapsedTime >= 60000) { //1,200,000 = 20 min
+                        System.out.println("\nTime is up and the killer approches you.");
+                        if (User.weapons.size()==0) {
+                            System.out.println("You have nothing defend yourself and die. ");
+                            won=false;
+                            //return false;
+                            break;
+                        }
+                        else {
+                            System.out.println("You use the " +User.weapons.get(0).name + " you were carrying to defeat the murderer. \nCongratulations! You were able to survive the investigation, but were unable to solve the mystery.");
+                            won=false;
+                            //return false;
+                            break;
+                        }
+                    }
+                    if (elapsedTime<60000) {
+                        response = scanner.nextLine();
+                        if (response.contains("Pick") || response.contains("pick") || response.contains("Grab") || response.contains("grab")) {
+                            try {
+                                User.grab(response);
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Drop") || response.contains("drop") || response.contains("Leave") || response.contains("leave")) {
+                            try {
+                                User.drop(response);
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Open") || response.contains("open")) {
+                            try {
+                                User.open(response);
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("West") || response.contains("west") || response.contains("Left") || response.contains("left")) {
+                            try {
+                                User.goWest();
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("East") || response.contains("east") || response.contains("Right") || response.contains("right")) {
+                            try {
+                                User.goEast();
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("North") || response.contains("north")|| response.contains("Up") || response.contains("up")) {
+                            try {
+                                User.goNorth();
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("South") || response.contains("south") || response.contains("Down") || response.contains("down")) {
+                            try {
+                                User.goSouth();
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Watch") || response.contains("watch")) {
+                            try {
+                                User.watch();
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Talk") || response.contains("talk")|| response.contains("Say hi") || response.contains("Say hi")) {
+                          try {
+                                User.talk(response);
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Ask") || response.contains("ask")) {
+                            try {
+                                  User.ask(response);
+                            }catch (Exception e) {
+                                  System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Eat") || response.contains("eat")) {
+                            try {
+                                  User.eat(response);
+                            }catch (Exception e) {
+                                  System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Read") || response.contains("read")) {
+                            try {
+                                  User.read();
+                            }catch (Exception e) {
+                                  System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Examine") || response.contains("examine") || response.contains("Look") || response.contains("look") || response.contains("Uncrumple") || response.contains("uncrumple")) {
+                            try {
+                                  User.examine(response);
+                            }catch (Exception e) {
+                                  System.out.println(e.getMessage());
+                            }
+                        }
+                        else if (response.contains("Yes") || response.contains("yes")) {
+                            if (User.x_position==0 && User.y_position==0) {
+                                //scanner.close();
+                                System.out.println("Enter your accusation:");
+                                accusation = scanner.nextLine();
+                                try {
+                                    accuse(accusation.toLowerCase());
+                                    //Scanner scanner = new Scanner(System.in);
+                              }catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                              }
+                            }
+                            else {
+                                System.out.println("You cannot accuse in this room. ");
+                            }
+                        }
+                        else if (response.contains("Time") || response.contains("time")) {
+                            if (elapsedTime==0) {
+                                throw new RuntimeException("There is currently no ongoing timer. ");
+                            }
+                            else {
+                                System.out.println("Time remaining: " +(20-(TimeUnit.MILLISECONDS.toMinutes(elapsedTime))) + " minutes");
+                            }
+                        }
+                        else {
+                            System.out.println("I don't know what this means.");
+                        }
+                    
+                    }
+                
+                }
+                
+                //scanner.close();
+            }
+         
+        }  
+        //else { 
+            //return false;
+        //}
         
+        return won;
     }
 
     public static void main(String[] arguments) {
@@ -173,7 +349,6 @@ public class Conversation {
                 }
             }
             else if (response.contains("Examine") || response.contains("examine") || response.contains("Look") || response.contains("look") || response.contains("Uncrumple") || response.contains("uncrumple")) {
-    
                 try {
                       User.examine(response);
                 }catch (Exception e) {
@@ -186,15 +361,21 @@ public class Conversation {
                     System.out.println("Enter your accusation:");
                     accusation = scanner.nextLine();
                     try {
-                        accuse(accusation.toLowerCase());
+                        if (accuse(accusation.toLowerCase())==false) {
+                            break;
+                        }
                         //Scanner scanner = new Scanner(System.in);
-                  }catch (Exception e) {
+                        
+                    }catch (Exception e) {
                         System.out.println(e.getMessage());
-                  }
+                    }
                 }
                 else {
                     System.out.println("You cannot accuse in this room. ");
                 }
+            }
+            else if (response.contains("Time ") || response.contains("time ")) {
+                System.out.println("There is currently no ongoing timer. ");
             }
             else {
                 System.out.println("I don't know what this means.");
