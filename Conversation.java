@@ -12,18 +12,7 @@ public class Conversation {
     static long startTime;
     static long elapsedTime;
     private static int numAccuse=0;
-    //private String murderer = "Green";
-    //private Weapon murder_weapon = Map.lead_pipe;
-    //private Room murder_room = Map.library;
-
-    // public static void getTime() {
-    //     if (elapsedTime==0) {
-    //         throw new RuntimeException("There is currently no ongoing timer. ");
-    //     }
-    //     else {
-    //         System.out.println("Time remaining: " +(20-(TimeUnit.MILLISECONDS.toMinutes(elapsedTime))) + " minutes");
-    //     }
-    // }
+   
     public static boolean accuse(String accusation) {
         if (accusation.contains("green")) {
             if (accusation.contains("peacock") || accusation.contains("white") || accusation.contains("plum") || accusation.contains("mustard") || accusation.contains("scarlet")) {
@@ -213,6 +202,40 @@ public class Conversation {
                                 System.out.println("Time remaining: " +(20-(TimeUnit.MILLISECONDS.toMinutes(elapsedTime))) + " minutes");
                             }
                         }
+                        else if (response.contains("Format") || response.contains("format")) {
+                            System.out.println("Here is some important formatting information:");
+                            System.out.println("\n-In order to move around the hallways and enter rooms you need to type the direction you want to go: North, South, West, East or Up, Down, Left, Right");
+                            System.out.println("\n-When asking characters for clues do not include the characters name who you are talking to. For example, you should say 'ask if they saw the student in the classroom' not 'ask the teacher if they saw the student in the classroom'.");
+                            System.out.println("\n-When attempting to interact with objects or characters you must mention their/its name. Ex: 'open envelope'");
+                            System.out.println("\n-All text should be lower case or title case\n");
+                        }
+                        else if (response.contains("Help") || response.contains("help")) {
+                            System.out.println("Here is a list of all the possible actions and if they coorespond to user/objects/weapons/characters.");
+                            System.out.println("\nPick/Grab - weapon");
+                            System.out.println("Drop/Leave - weapon; if you drop a weapon in room or hallway that is not its original location, when you come back it won't tell you its there. Therefore, you must remember where you drop weapons if you want to pick them up again. ");
+                            System.out.println("Open - envelope, book, closet");
+                            System.out.println("North/Up - user");
+                            System.out.println("South/Down - user");
+                            System.out.println("East/Right - user");
+                            System.out.println("West/Left - user");
+                            System.out.println("Watch - movie");
+                            System.out.println("Talk - character");
+                            System.out.println("Ask - character;");
+                            System.out.println("Eat - food");
+                            System.out.println("Examine/Look/Uncrumple - weapons, objects\n");
+                            System.out.println("Thank - character");
+                            System.out.println("Inventory - user");
+                        }
+                        else if (response.contains("Thank") || response.contains("thanks")) {
+                            try {
+                                User.thank();
+                            }catch (Exception e) {
+                                System.out.println(e.getMessage());
+                          }
+                        }
+                        else if (response.contains("Inventory") || response.contains("inventory")) {
+                            User.inventory();
+                        }
                         else {
                             System.out.println("I don't know what this means.");
                         }
@@ -258,9 +281,10 @@ public class Conversation {
         System.out.println("█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█");
         System.out.println("███████████████████████████████████████████████████████████████████████████████████████████████");
     
-
-
+        
+        System.out.println("\nType 'format' if you want help formatting your responses. Type 'help' for a list of all actions.");
         System.out.println("\nYou find yourself in a room at the center of a house. There is a table with an envelope.");
+        
         Scanner scanner = new Scanner(System.in);
         while (won = true) {
             response = scanner.nextLine();
@@ -377,6 +401,40 @@ public class Conversation {
             else if (response.contains("Time ") || response.contains("time ")) {
                 System.out.println("There is currently no ongoing timer. ");
             }
+            else if (response.contains("Format") || response.contains("format")) {
+                System.out.println("Here is some important formatting information:");
+                System.out.println("\n-In order to move around the hallways and enter rooms you need to type the direction you want to go: North, South, West, East or Up, Down, Left, Right");
+                System.out.println("\n-When asking characters for clues do not include the characters name who you are talking to. For example, you should say 'ask if they saw the student in the classroom' not 'ask the teacher if they saw the student in the classroom'.");
+                System.out.println("\n-When attempting to interact with objects or characters you must mention their/its name. Ex: 'open envelope'");
+                System.out.println("\n-All text should be lower case or title case\n");
+            }
+            else if (response.contains("Help") || response.contains("help")) {
+                System.out.println("Here is a list of all the possible actions and if they coorespond to user/objects/weapons/characters.");
+                System.out.println("\nPick/Grab - weapon");
+                System.out.println("Drop/Leave - weapon; if you drop a weapon in room or hallway that is not its original location, when you come back it won't tell you its there. Therefore, you must remember where you drop weapons if you want to pick them up again. ");
+                System.out.println("Open - envelope, book, closet");
+                System.out.println("North/Up - user");
+                System.out.println("South/Down - user");
+                System.out.println("East/Right - user");
+                System.out.println("West/Left - user");
+                System.out.println("Watch - movie");
+                System.out.println("Talk - character");
+                System.out.println("Ask - character;");
+                System.out.println("Eat - food");
+                System.out.println("Examine/Look/Uncrumple - weapons, objects\n");
+                System.out.println("Thank - character");
+                System.out.println("Inventory - user");
+            }
+            else if (response.contains("Thank") || response.contains("thanks")) {
+                try {
+                    User.thank();
+                }catch (Exception e) {
+                    System.out.println(e.getMessage());
+              }
+            }
+            else if (response.contains("Inventory") || response.contains("inventory")) {
+                User.inventory();
+            }
             else {
                 System.out.println("I don't know what this means.");
             }
@@ -385,5 +443,5 @@ public class Conversation {
     }
 
 }
-//3wrj
+
 

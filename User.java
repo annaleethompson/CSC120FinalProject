@@ -76,6 +76,9 @@ public class User {
                     throw new RuntimeException("The candlestick isn't in this room.");
                 }
             }
+            else {
+                System.out.println("What do you want to grab? Formatting: 'grab ___' or 'pick up ___'.");
+            }
         }
     
     }
@@ -149,11 +152,10 @@ public class User {
                     throw new RuntimeException("You aren't holding the candlestick.");
                 }
             }
+            else  {
+                System.out.println("What do you want to drop? Formatting: 'drop ___' or 'leave ____");
+            }
         }
-        
-        // if (!items.contains(item)) {
-        //     throw new RuntimeException("You aren't holding " + item);
-        // }
     
     }
 
@@ -222,21 +224,15 @@ public class User {
             System.out.println("There is no candlestick to examine here. ");
         }
         else {
-            throw new RuntimeException("What do you want to examine?");
+            throw new RuntimeException("What do you want to examine? Formatting: 'examine _____' or 'look at _____'.");
         }
     }
     
     public static void inventory() {
         System.out.println("Current inventory:");
-        System.out.println(items.toString()
-                            .replace("[","")
-                            .replace("]","")
-                            .replace(", ", "\n"));
-        System.out.println(weapons.toString()
-                            .replace("[","")
-                            .replace("]","")
-                            .replace(", ", "\n"));
-
+        for (int i=0; i<weapons.size(); i++ ) {
+            System.out.println(weapons.get(i).name);
+        }
     }
 
     public static void goWest() {
@@ -352,16 +348,16 @@ public class User {
             }
         }
         else {
-            System.out.println("Talk to whom?");
+            System.out.println("Talk to whom? Formatting: 'talk to ____'.");
         }
     }
 
     public static void ask(String response) {
-        if ((response.contains("Lead pipe") || response.contains("lead pipe")) && (response.contains("Lounge") || response.contains("lounge"))) {
+        if ((response.contains("Lead pipe") || response.contains("lead pipe"))) {
             if  (x_position ==-2 && y_position == 0) {
                 System.out.println("\nMs.White says she dosn't recall seeing a lead pipe in the lounge when she left");
             } else {
-                throw new RuntimeException("Ms.White isn't in this room");
+                throw new RuntimeException("Only Ms.White says she saw the lead pipe.");
             }
         }
         else if ((response.contains("White") || response.contains("white")) && (response.contains("Theatre") || response.contains("theatre"))) {
@@ -413,22 +409,84 @@ public class User {
                 throw new RuntimeException("Colonel Mustard isn't in this room");
             }
         }
-        else if ((response.contains("Rope") || response.contains("rope")) && (response.contains("Hall") || response.contains("hall"))) {
+        else if ((response.contains("Rope") || response.contains("rope"))) {
             if (x_position == 0 && y_position == -2) {
                 System.out.println("\nMr.Green says the rope was there when he got there.\n");
             } else {
-                throw new RuntimeException("Mr.Green isn't in this room");
+                throw new RuntimeException("Only Mr.Green knows about the rope.");
             }
         }
-        else if ((response.contains("Pistol") || response.contains("pistol")) && (response.contains("Hall") || response.contains("hall"))) {
+        else if ((response.contains("Pistol") || response.contains("pistol"))) {
             if (x_position == 0 && y_position == -2) {
                 System.out.println("\nMr.Green says he didn't see one but that he wouldn't have noticed it because he wasn't looking for it.\n");
             } else {
-                throw new RuntimeException("Mr.Green isn't in this room");
+                throw new RuntimeException("Mr.Green isn't in this room.");
+            }
+        }
+        else if (response.contains("Knife") || response.contains("knife")) {
+            if (x_position == 2 && y_position == 2) {
+                System.out.println("Mustard says the knife was with him the entire time.");
+            } else {
+                throw new RuntimeException("Only Mustard knows about the knife.");
+            }
+        }
+        else if (response.contains("Pistol") || response.contains("pistol")) {
+            if (x_position == -2 && y_position == 2) {
+                System.out.println("Scarlet says she only saw the pistol in the study.");
+            } else {
+                throw new RuntimeException("Only Scarlet saw the pistol.");
+            }
+        }
+        else if (response.contains("Candlestick") || response.contains("candlestick")) {
+            if (x_position == -2 && y_position == 2) {
+                System.out.println("Scarlet says that the candlestick was with her the entire time.");
+            } else {
+                throw new RuntimeException("Only Scarlet knows about the candlestick.");
+            }
+        }
+        else if (response.contains("Wrench") || response.contains("wrench")) {
+            if (x_position == 2 && y_position == -2) {
+                System.out.println("Peacock says that Plum dropped off the wrench and it has been there since.");
+            } 
+            else if (x_position == 2 && y_position == -2) {
+                System.out.println("Plum says that he brought the wrench from the dining room to the conservatory so that Mustard could fix the hose. ");
+            }
+            else {
+                throw new RuntimeException("There is no one that knows about the wrench in this room.");
+            }
+        }
+        else if (response.contains("Why") || response.contains("why") || response.contains("What") || response.contains("what")) {
+            if (response.contains("Candlestick") || response.contains("candlestick")) {
+                if (x_position == -2 && y_position == 2) {
+                    System.out.println("Scarlet says that she was using the candlestick for light. ");
+                } else {
+                    throw new RuntimeException("Only Scarlet can talk about the candlestick.");
+                }
+            }
+            else if (response.contains("Knife") || response.contains("knife")) {
+                if (x_position == 2 && y_position == 2) {
+                    System.out.println("Mustard says that he used the knife to cut herbs in the conservatory and to cook in the kitchen.");
+                } else {
+                    throw new RuntimeException("Only Mustard knows about the knife.");
+                }
+            }
+            else if (response.contains("Cooking") || response.contains("cooking") || response.contains("Making") || response.contains("making")) {
+                if (x_position == 2 && y_position == 2) {
+                    System.out.println("Mustard says that he is cooking ___.");
+                } else {
+                    throw new RuntimeException("Only Mustard is cooking.");
+                }
+            }
+            else if ((response.contains("Watching") || response.contains("watching"))) {
+                if  (x_position ==-2 && y_position == 0) {
+                    System.out.println("\nMs.White says she's watching Vertigo, a Hitchcock film.");
+                } else {
+                    throw new RuntimeException("Only Ms.White is watching something");
+                }
             }
         }
         else {
-            System.out.println("Ask what?");
+            System.out.println("Ask what? Formatting: 'ask about ____(weapon, character, and/or room)");
         }
         
     }
@@ -459,12 +517,35 @@ public class User {
         }
     }
 
+    public static void thank() {
+        if (x_position ==2 && y_position == 2) {
+            System.out.println("Mustard says no problem and wishes you the best");
+        }
+        else if (x_position ==2 && y_position == 0) {
+            System.out.println("Plum says no worries and waves goodbye.");
+        }
+        else if (x_position ==2 && y_position == -2) {
+            System.out.println("Peacock says that they are glad they were able to help.");
+        }
+        else if (x_position ==0 && y_position == -2) {
+            System.out.println("Green says that he's sorry he wasn't much help.");
+        }
+        else if (x_position ==-2 && y_position == 0) {
+            System.out.println("White says no problem and goes back to watching the movie.");
+        }
+        else if (x_position ==-2 && y_position == 2) {
+            System.out.println("Scarlet says no worries and to let them know if you need any more help.");
+        }
+        else {
+            throw new RuntimeException("There is no one to thank here.");
+        }
+    }
     public static void read() {
         if (x_position ==2 && y_position == -2) {
-            //read Peacocks journal in the conservatory
+            System.out.println("You read Peacocks journal in the conservatory but there is nothing interesting inside.");
         }
         else if (x_position ==0 && y_position == 2) {
-            //read White's book in the lounge
+            System.out.println("You read a part of White's book and discover that it is a horror novel");//read White's book in the lounge
         }
         else {
             System.out.println("There is nothing to read in this room.");
@@ -512,15 +593,9 @@ public class User {
             }
         }
         else {
-            throw new RuntimeException("What do you want to open?");
+            throw new RuntimeException("What do you want to open? Formatting: 'open ____'.");
         }
         
-    }
-
-    public static void main(String[] args) {
-       
-        
-        //regj
     }
 
 }
