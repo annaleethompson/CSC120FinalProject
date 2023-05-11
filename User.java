@@ -1,12 +1,25 @@
+/** 
+ * Filename: User.java
+ * Decription: class that contains all of the actions that the user can preform. Includes funtions grab(), drop(), examine(), inventory(), goEast(), goWest(), goNorth(), goSouth(), watch(), talk(), ask(), what(), eat(), thank(), read(), and open()
+ * A part of CSC 120-02: Object-Oriented Programming, Smith College Spring 2023, Final Project
+ * @author Anna-Lee Thompson (@annaleethompson)
+ * Date: May 10, 2023
+ */
+
+/**Imports ArrayList from the java.util package */
 import java.util.ArrayList;
 
+/**User class */
 public class User {
-    /**Stores strings for the name and type of the bug, and integers for the x_positon, y_position, size, and energy. Also stores an ArrayList for all the items that the bug is holding.  */
+    
+    /**Stores an arraylist of items */
     public static ArrayList<String> items = new ArrayList<String>();
+    /**Stores an arraylist of Weapons*/
     public static ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+    /**Integer describing the users current x-coordinate*/
     static int x_position=0;
+    /**Integer describing the users current y-coordinate */
     static int y_position=0;
-
 
     /**Constructor */ 
     public User() {
@@ -14,8 +27,8 @@ public class User {
         //weapons = new ArrayList<Weapon>(); 
     }
     
-    /**Manipulator to grab an item by adding it to the items arraylist if the bug has enough energy and can hold another object. Reduces the bugs energy if it can grab the item. 
-     * @param item item to be grabbed (item to be added to the items ArrayList)
+    /**Function that grabs a weapon if the user can hold another item. 
+     * @param response the string that the user inputted that also contains the word "grab" or "pick up"
      */
     public static void grab(String response) {
         if ((weapons.size() ==2) || (items.size() ==2) || ((weapons.size()==1) && (items.size()==1))) {
@@ -80,12 +93,11 @@ public class User {
                 System.out.println("What do you want to grab? Formatting: 'grab ___' or 'pick up ___'.");
             }
         }
-    
     }
 
 
-    /**Manipulator to drop an item by removing it from the items arraylist if the bug is holding the item. 
-     * @param item item to be dropped (item to be removed from the items Arraylist)
+    /**Function that drops a specified weapon. 
+     * @param response the string that the user inputted that also contains the word "drop" or "leave"
      */
     public static void drop(String response) {
         if ((items.size() ==0) && (weapons.size() ==0)) {
@@ -156,11 +168,10 @@ public class User {
                 System.out.println("What do you want to drop? Formatting: 'drop ___' or 'leave ____");
             }
         }
-    
     }
 
-    /**Function that examines an item if the bug has enough energy. Reduces the bugs energy if it can examine the item. 
-     * @param item item to be examined
+    /**Function that examines a specified item and prints out a clue depending if they are in the correct location.
+     * @param response the string that the user inputted that also contains the word "examine" or "look at"
      */
     public static void examine(String response) {
         if (response.contains("Pistol") || response.contains("pistol")) {
@@ -228,16 +239,23 @@ public class User {
         }
     }
     
+    /**Function that prints out all the items the user is carrying.*/
     public static void inventory() {
-        System.out.println("Current inventory:");
-        for (int i=0; i<weapons.size(); i++ ) {
-            System.out.println(weapons.get(i).name);
+        if (weapons.size()==0) {
+            throw new RuntimeException("There are no weapons in your inventory. ");
+        }
+        else {
+            System.out.println("Current inventory:");
+            for (int i=0; i<weapons.size(); i++ ) {
+                System.out.println(weapons.get(i).name);
+            }
         }
     }
 
+    /**Function that moves the user to the left if there is a door or hallway. Calls on the Map enterRoom function to enter specific rooms.  */
     public static void goWest() {
         if (y_position == 2 || y_position ==-2 || x_position ==-2) {
-            throw new RuntimeException("There is no door or hallway to your west.");
+            throw new RuntimeException("There is no room or hallway to your west.");
         }
         else {
             x_position-=1;
@@ -250,9 +268,10 @@ public class User {
         }
     }
 
+    /**Function that moves the user to the right if there is a door or hallway. Calls on the Map enterRoom function to enter specific rooms.  */
     public static void goEast() {
         if (y_position == 2 || y_position ==-2 || x_position ==2) {
-            throw new RuntimeException("There is no door or hallway to your east.");
+            throw new RuntimeException("There is no room or hallway to your east.");
         }
         else {
             x_position+=1;
@@ -265,9 +284,10 @@ public class User {
         }
     }
 
+    /**Function that moves the user up if there is a door or hallway. Calls on the Map enterRoom function to enter specific rooms.  */
     public static void goNorth() {
         if (y_position == 2 || (x_position ==-2 && y_position ==0) || (x_position ==2 && y_position ==0)|| (x_position==-2 && y_position==-1) || (x_position==2 && y_position==-1)) {
-            throw new RuntimeException("There is no door or hallway to your north.");
+            throw new RuntimeException("There is no room or hallway to your north.");
         }
         else {
             y_position+=1;
@@ -280,9 +300,10 @@ public class User {
         }
     }
 
+    /**Function that moves the user down if there is a door or hallway. Calls on the Map enterRoom function to enter specific rooms.  */
     public static void goSouth() {
         if (y_position == -2 || (x_position ==-2 && y_position ==0) || (x_position ==2 && y_position ==0) || (x_position==2 && y_position==1) || (x_position==-2 && y_position==1)) {
-            throw new RuntimeException("There is no door or hallway to your south.");
+            throw new RuntimeException("There is no room or hallway to your south.");
         }
         else {
             y_position-=1;
@@ -295,6 +316,7 @@ public class User {
         }
     }
 
+    /**Function that allows the to watch the movie with Ms.White in the theatre. */
     public static void watch() {
         if (x_position ==-2 && y_position == 0) {
             System.out.println("You sit down next to Mrs. White and watch some of the film. The movie is Vertigo, a Hitchcock film. ");
@@ -304,6 +326,9 @@ public class User {
         }
     }
 
+    /**Function that allows the user to talk to specific characters and prints out a clue depending if they are in the correct location.
+     * @param response the string that the user inputted that also contains the word "talk"
+     */
     public static void talk(String response) {
         if (response.contains("Peacock") || response.contains("peacock")) {
             if (x_position ==2 && y_position == -2) {
@@ -352,8 +377,11 @@ public class User {
         }
     }
 
+    /**Function that allows the user to ask suspects specifc questions about other people, rooms, and weapons. If the correct questions are asked it will print out a clue depending if they are in the correct location.
+     * @param response the string that the user inputted that also contains the word "ask"
+     */
     public static void ask(String response) {
-        if ((response.contains("Lead pipe") || response.contains("lead pipe"))) {
+        if ((response.contains("Lead pipe") || response.contains("lead pipe")) && (response.contains("Lounge") || response.contains("lounge"))) {
             if  (x_position ==-2 && y_position == 0) {
                 System.out.println("\nMs.White says she dosn't recall seeing a lead pipe in the lounge when she left");
             } else {
@@ -416,7 +444,7 @@ public class User {
                 throw new RuntimeException("Only Mr.Green knows about the rope.");
             }
         }
-        else if ((response.contains("Pistol") || response.contains("pistol"))) {
+        else if ((response.contains("Pistol") || response.contains("pistol")) && (response.contains("Study") || response.contains("study"))) {
             if (x_position == 0 && y_position == -2) {
                 System.out.println("\nMr.Green says he didn't see one but that he wouldn't have noticed it because he wasn't looking for it.\n");
             } else {
@@ -486,11 +514,14 @@ public class User {
             }
         }
         else {
-            System.out.println("Ask what? Formatting: 'ask about ____(weapon, character, and/or room)");
+            System.out.println("Ask what? Formatting: 'ask if/about ____(weapon, character, and/or room)");
         }
         
     }
 
+    /**Function that allows the user to ask about suspects injuries if they are in the correct location.
+     * @param response the string that the user inputted that also contains the word "what"
+     */
     public static void what(String response) {
         if ((response.contains("Arm") || response.contains("arm")) && (response.contains("Happened") || response.contains("happened"))) {
             if  (x_position ==-2 && y_position == 0) {
@@ -508,15 +539,19 @@ public class User {
         }
     }
 
+    /**Function that allows the user to eat if they are in a room where they can do so.
+     * @param response the string that the user inputted that also contains the word "examine" or "look at"
+     */
     public static void eat(String response) {
         if (x_position ==2 && y_position == 2) {
             System.out.println("Mustard gives you a plate of the dish he just made and you sit down to eat for a bit. ");
         }
         if (x_position ==2 && y_position == 0) {
-            System.out.println("Professor Plum serves you a plate of __ and you eat with him. You converse with him and he tells you that he lost his favorite bookmark somewhere and doesn't know where it could have gone.  ");
+            System.out.println("Professor Plum serves you a plate and you eat with him. You converse with him and he tells you that he lost his favorite bookmark somewhere and doesn't know where it could have gone.  ");
         }
     }
 
+    /**Function that is called if the user says thank you to one of the suspects.*/
     public static void thank() {
         if (x_position ==2 && y_position == 2) {
             System.out.println("Mustard says no problem and wishes you the best");
@@ -540,6 +575,8 @@ public class User {
             throw new RuntimeException("There is no one to thank here.");
         }
     }
+
+    /** Function that is called if the user wants to read something in a room. */
     public static void read() {
         if (x_position ==2 && y_position == -2) {
             System.out.println("You read Peacocks journal in the conservatory but there is nothing interesting inside.");
@@ -552,6 +589,9 @@ public class User {
         }
     }
 
+    /**Function that allows the user to open something if they are in a room where they can do so.
+     * @param response the string that the user inputted that also contains the word "open"
+     */
     public static void open(String response) {
         if (response.contains("Envelope") || response.contains("envelope")) {
             if (x_position ==0 && y_position == 0) {

@@ -1,23 +1,44 @@
+/** 
+ * Filename: Room.java
+ * Decription: class that can create different types of rooms. Contains functions addWeapon, removeWeapon, and enterRoom.
+ * A part of CSC 120-02: Object-Oriented Programming, Smith College Spring 2023, Final Project
+ * @author Anna-Lee Thompson (@annaleethompson)
+ * Date: May 10, 2023
+ */
+
+/**Imports ArrayList from the java.util package */
 import java.util.ArrayList;
 
+/**Room class */
 public class Room {
     
+    /**Stores the name of the room */
     public String name;
+    /**Stores the x-coordinate of the room */
     public int x_position;
+    /**Stores the y-coordinate of the room */
     public int y_position;
-    public ArrayList<String> residents;
+    /**Stores ArrayList of items. */
     public ArrayList<String> items;
+    /**Stores ArrayList of weapons */
     public ArrayList<Weapon> weapons;
     
+    /**Constructor
+     * @param name the name of the room
+     * @param x_positon the x-coordinate of the room
+     * @param y_position the y-coordinate of the room
+     */
     public Room(String name, int x_position, int y_positon) {
         this.name = name;
         this.x_position = x_position; 
         this.y_position = y_positon;
-        //this.residents = new ArrayList<String>();
         this.items = new ArrayList<String>();
         this.weapons = new ArrayList<Weapon>();
     }
 
+    /**Function that adds an inputted weapon to the room's weapon arraylist 
+     * @param weapon weapon to be added to room
+     */
     public void addWeapon(Weapon weapon) {
         if (this.weapons.contains(weapon)) {
             throw new RuntimeException(weapon.name + " is already in the " + this.name);
@@ -26,6 +47,10 @@ public class Room {
             this.weapons.add(weapon);
         }
     }
+
+    /**Function that removes an inputted weapon from the room's weapon arraylist 
+     * @param weapon weapon to be removed from the room
+     */
     public void removeWeapon(Weapon weapon) {
         if (this.weapons.size() == 0) {
             throw new RuntimeException("There are no weapons in " + this.name);
@@ -35,10 +60,8 @@ public class Room {
         }
         this.weapons.remove(weapon);
     }
-    /**
-     * Adds a passenger to a car and throws a RunTimeException if the passenger is on the car already or if the car is at maximum capacity.
-     * @param p the passenger to be added
-     */
+    
+    /**Function that prints out the specific clues associated with each room depending on whether the users coordinates are the same as the room. */
     public void enterRoom () {
     
         if (x_position ==-2 && y_position == 0) {
@@ -102,16 +125,5 @@ public class Room {
             }
         }
     }
-
-    
-    /**
-     * Removes a passenger from a car and throws a RunTimeException if the passenger isn't in the car or if there are no passengers on the car.
-     * @param p the passenger to be removed
-     */
-    public void exitRoom(String p) {
-        //this.residents.remove(p);
-        //3rffh
-    } 
-    
 
 }
