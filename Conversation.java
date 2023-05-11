@@ -91,7 +91,7 @@ public class Conversation {
                 Scanner scanner = new Scanner(System.in);
                 while (won=true) {
                     long elapsedTime = System.currentTimeMillis() - startTime;
-                    if (elapsedTime >= 60000) { //1,200,000 = 20 min
+                    if (elapsedTime >= 1200000) { //1,200,000 = 20 min
                         System.out.println("\nTime is up and the killer approches you.");
                         if (User.weapons.size()==0) {
                             System.out.println("You have nothing defend yourself and die. ");
@@ -104,7 +104,7 @@ public class Conversation {
                             break;
                         }
                     }
-                    if (elapsedTime<60000) {
+                    if (elapsedTime<1200000) {
                         response = scanner.nextLine();
                         if (response.contains("Pick") || response.contains("pick") || response.contains("Grab") || response.contains("grab")) {
                             try {
