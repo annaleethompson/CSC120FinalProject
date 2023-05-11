@@ -137,7 +137,7 @@ public class Map {
         }
         if (x_position ==1 && y_position ==-2) {
             System.out.println("This is a deadend. North of you is the hallway you came from.");
-            System.out.println("To you right, close to the northern hallway you spot a hankerchief on the ground. ");
+            System.out.println("To you right, close to the northern hallway you spot a handkerchief on the ground. ");
         }
         if (x_position ==-2 && y_position==1) {
             System.out.println("To your north there is a room and to your east is the hallway you came from.");

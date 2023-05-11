@@ -204,11 +204,11 @@ public class User {
             }
             System.out.println("There is no bookmark to examine here. ");
         }
-        else if (response.contains("Hankerchief") || response.contains("hankerchief")) {
+        else if (response.contains("Handkerchief") || response.contains("handkerchief")) {
             if (x_position ==1 && y_position ==-2) {
-                System.out.println("The hankerchief is dark green.");
+                System.out.println("The handkerchief is dark green.");
             }
-            System.out.println("There is no hankerchief to examine here. ");
+            System.out.println("There is no handkerchief to examine here. ");
         }
         else if (response.contains("Knife") || response.contains("knife")) {
             if (x_position ==2 && y_position ==2) {
@@ -353,7 +353,7 @@ public class User {
         }
         else if (response.contains("Mustard") || response.contains("mustard")) {
             if (x_position ==2 && y_position == 2) {
-                System.out.println("\nYou interupt Mustard from his cooking and inquire if he has noticed anything odd lateley. He says that earlier he went to the conservatory to get some thyme for his dish and saw Scarlet in the eastern hallway swiftly heading north with a lit candlestick. At the conservatory, he claims to have talked with Peacock for a little and then fixed a broken hose used to water the plants with a wrench there. After getting the thyme he says he came back to the kitchen and has been cooking since then.\n");
+                System.out.println("\nYou interupt Mustard from his cooking and inquire if he has noticed anything odd lateley. He says that earlier he went to the conservatory to get some thyme for his dish and saw Scarlet in the western hallway swiftly heading north with a lit candlestick. At the conservatory, he claims to have talked with Peacock for a little and then fixed a broken hose used to water the plants with a wrench there. After getting the thyme he says he came back to the kitchen and has been cooking since then.\n");
             } else {
                 System.out.println("Colonel Mustard isn't in this room");
             }
@@ -395,6 +395,7 @@ public class User {
                 throw new RuntimeException("Scarlet isn't in this room");
             }
         }
+        
         else if ((response.contains("Plum") || response.contains("plum")) && (response.contains("Dining room") || response.contains("dining room"))) {
             if (x_position == 2 && y_position == 2) {
                 System.out.println("\nMustard saw Professor Plum in the dining room on the way back to the kitchen.\n");
@@ -403,6 +404,13 @@ public class User {
             }
         }
         else if ((response.contains("Plum") || response.contains("plum")) && (response.contains("Conservatory") || response.contains("conservatory"))) {
+            if (x_position == 2 && y_position == -2) {
+                System.out.println("\nPeacock says that Professor Plum did pop into the conservatory for a minute to bring a wrench to fix the broken pipe.\n");
+            } else {
+                throw new RuntimeException("Peacock isn't in this room");
+            }
+        }
+        else if ((response.contains("Mustard") || response.contains("mustard")) && (response.contains("Conservatory") || response.contains("conservatory"))) {
             if (x_position == 2 && y_position == -2) {
                 System.out.println("\nPeacock says that Professor Plum did pop into the conservatory for a minute to bring a wrench to fix the broken pipe.\n");
             } else {
@@ -530,7 +538,7 @@ public class User {
                 throw new RuntimeException("Ms.White isn't in this room");
             }
         }
-        if ((response.contains("Hand") || response.contains("hand")) && (response.contains("Happened") || response.contains("happened"))) {
+        if ((response.contains("Hand") || response.contains("hand") || response.contains("Brace") || response.contains("brace")) && (response.contains("Happened") || response.contains("happened"))) {
             if  (x_position ==0 && y_position == -2) {
                 System.out.println("\nMr.Green says that he fell while he was playing basketball and sprained his wrist.");
             } else {
